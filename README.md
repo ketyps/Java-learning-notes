@@ -1,8 +1,8 @@
-# Java Learning Notes 🚧
+# Java Learning Notes
 
 我的 Java 学习笔记和练习代码仓库。
 
-> 📝 **本仓库仍在不断完善中** — 会持续更新 Java 学习的代码、笔记和项目。
+> **本仓库仍在不断完善中** — 会持续更新 Java 学习的代码、笔记和项目。
 
 ## 内容
 
