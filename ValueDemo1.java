@@ -7,28 +7,28 @@ public class ValueDemo1 {
         // 比如打印数字不需要加引号,字符串用双引号括起,字符用单引号括起
 
         //整数
-        System.err.println(666);
-        System.err.println(-777);
+        System.out.println(666);
+        System.out.println(-777);
 
         //小数
-        System.err.println(1.93);
+        System.out.println(1.93);
         System.out.println(-3.71);
 
         //字符串
-        System.err.println("黑马程序员");
-        System.err.println("尼古拉斯阿玮");
+        System.out.println("黑马程序员");
+        System.out.println("尼古拉斯阿玮");
 
         //字符串
-        System.err.println('男');
-        System.err.println('女');
+        System.out.println('男');
+        System.out.println('女');
 
         //布尔
         System.out.println(true);
-        System.err.println(false);
+        System.out.println(false);
 
         //空
         //细节:null不能直接打印的.
         //如果我们要打印null,那么只能用打印字符串的形式进行打印
-        System.err.println("null");
+        System.out.println("null");
     }
 }
