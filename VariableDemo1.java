@@ -9,6 +9,6 @@ public class VariableDemo1 {
         //等号:赋值. 把右边的数据赋值给左边的变量
 
         int a = 10;
-        System.out.println(a);
+        System.out.println(a);//10
     }
 }
