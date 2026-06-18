@@ -6,6 +6,9 @@
 .idea/
 *.iml
 *.iws
+.classpath
+.project
+.settings/
 
 # OS files
 .DS_Store
