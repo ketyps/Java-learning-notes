@@ -1,4 +1,4 @@
-public class VariableTest {
+public class VariableTest1 {
     public static void main(String[] args) {
         //一开始没有乘客。
         int count = 0;
