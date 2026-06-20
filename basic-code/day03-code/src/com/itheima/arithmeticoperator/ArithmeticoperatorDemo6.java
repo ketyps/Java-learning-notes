@@ -16,3 +16,5 @@ public class ArithmeticoperatorDemo6 {
         System.out.println("z:" + z);//12
     }
 }
+
+//基础操作

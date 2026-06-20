@@ -18,3 +18,5 @@ public class ArithmeticoperatorDemo5 {
         System.out.println(a);//10
     }
 }
+
+//和其它语言相比并没有什么大的区别
