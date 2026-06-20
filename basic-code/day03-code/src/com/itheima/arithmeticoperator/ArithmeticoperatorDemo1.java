@@ -15,6 +15,7 @@ public class ArithmeticoperatorDemo1 {
         //为什么呢?
         //暂时只要知道这个结论就可以了.
         //具体的原因,我们到了JavaSE的时候,会再详细的讲解.
+        //以前学的C和python没遇到过的特性
         System.out.println(1.1+1.1);//2.2
         System.out.println(1.1+1.01);//2.1100000000000003
         System.out.println(1.1-1.01);//0.09000000000000008

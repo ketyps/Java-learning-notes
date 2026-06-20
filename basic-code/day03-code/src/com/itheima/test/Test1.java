@@ -24,5 +24,6 @@ public class Test1 {
         System.out.println("个位是:" + ge);
         System.out.println("十位是:" + shi);
         System.out.println("百位是:" + bai);
+        //非常典型的题目,每次写到这样的代码都不禁想起第一次用C语言实现的时候
     }
 }
