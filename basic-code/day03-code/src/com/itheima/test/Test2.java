@@ -22,5 +22,6 @@ public class Test2 {
 
         //3.打印结果
         System.out.println(result);
+        //基础操作
     }
 }
