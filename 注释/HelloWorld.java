@@ -6,3 +6,5 @@ public class HelloWorld{
 			System.out.println("HelloWorld");
 	}
 }
+
+//故事的开始总是美好的
