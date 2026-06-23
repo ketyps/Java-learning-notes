@@ -3,26 +3,23 @@ package com.itheima.test;
 public class Test18 {
     public static void main(String[] args) {
         int x = 121;
-        boolean result = false;
+        boolean result = true;
 
-        // 特殊情况：负数绝对不是回文（例如 -121 倒过来是 121-）
-        if (x >= 0) {
-            int temp = x; // 用一个临时变量来操作
-            long reverse = 0; // 用 long 防止反转时 int 溢出
-
-            // 通过循环不断取出末位数字拼接到 reverse 上
-            while(temp != 0){
-                int ge = temp % 10; // 取出当前的最后一位
-                reverse = reverse * 10 + ge; // 拼接到反转结果上
-                temp = temp / 10; // 去掉原数字的最后一位
+        // 1. 转为字符串
+        String str = String.valueOf(x);
+        // 2. 定义左右指针
+        int left = 0;
+        int right = str.length() - 1;
+        // 3. 左右向中间靠拢并判断
+        while(left < right){
+            if(str.charAt(left) != str.charAt(right)){
+                result = false;
+                break; // 一旦发现不一致，直接判定不是回文
             }
-
-            // 如果反转后的数字和原数字相等，就是回文数
-            if (reverse == x) {
-                result = true;
-            }
+            left++;
+            right--;
         }
-
+        // 4. 打印最终结果
         System.out.println(result);
     }
 }
