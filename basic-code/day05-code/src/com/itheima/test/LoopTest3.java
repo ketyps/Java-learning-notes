@@ -40,7 +40,6 @@ public class LoopTest3 {
             }
         }
 
-        //【补全代码】根据标志位打印最终结果
         if(flag) {
             System.out.println(number + "是一个质数");
         } else {
