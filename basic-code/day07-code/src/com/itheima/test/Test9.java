@@ -1,28 +1,26 @@
 package com.itheima.test;
 
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Random;
 
 public class Test9 {
     public static void main(String[] args) {
-        /* 需求：
-        一个大V直播抽奖，奖品是现金红包，分别有{2, 588 , 888, 1000, 10000}五个奖金。
-        请使用代码模拟抽奖，打印出每个奖项，奖项的出现顺序要随机且不重复。 */
+        // 1. 定义奖金数组
+        int[] arr = {2, 588, 888, 1000, 10000};
+        Random r = new Random();
 
-        // 1. 定义奖金列表（使用 ArrayList 集合）
-        ArrayList<Integer> list = new ArrayList<>();
-        list.add(2);
-        list.add(588);
-        list.add(888);
-        list.add(1000);
-        list.add(10000);
+        // 2. 循环遍历数组，打乱数组中的每一个元素（洗牌算法）
+        for (int i = 0; i < arr.length; i++) {
+            // 生成一个随机索引
+            int randomIndex = r.nextInt(arr.length);
+            // 将 i 索引和 randomIndex 索引的数据进行交换
+            int temp = arr[i];
+            arr[i] = arr[randomIndex];
+            arr[randomIndex] = temp;
+        }
 
-        // 2. 核心：直接使用 Java 自带的方法将列表打乱
-        Collections.shuffle(list);
-
-        // 3. 遍历打印结果
-        for (Integer prize : list) {
-            System.out.println(prize + "元的奖金被抽出");
+        // 3. 遍历打印最终打乱后的顺序
+        for (int i = 0; i < arr.length; i++) {
+            System.out.println(arr[i] + "元的奖金被抽出");
         }
     }
 }
