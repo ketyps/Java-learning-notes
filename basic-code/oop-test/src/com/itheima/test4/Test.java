@@ -24,9 +24,9 @@ public class Test {
 
         Scanner sc = new Scanner(System.in);
         System.out.println("请输入第一个字符串");
-        String line1=sc.nextLine();
+        String line1 = sc.nextLine();
         System.out.println("请输入第二个字符串");
-        String line2=sc.nextLine();
+        String line2 = sc.nextLine();
         System.out.println(line2);
     }
 }
