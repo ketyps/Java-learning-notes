@@ -56,6 +56,31 @@ public class Test {
                 printArr(arr);
             }
         }
+
+        int index=getIndex(arr,5);
+        if(index>=0){
+            //如果存在,则删除
+            arr[index]=null;
+            printArr(arr);
+            //遍历数组
+        }else{
+            //如果不存在,则提示删除失败
+            System.out.println("当前id不存在,删除失败");
+        }
+
+        int index2=getIndex(arr,1);
+        if(index2>=0){
+            //存在,则他的年龄加一岁
+            Student sut = arr[index];
+            //把原来的年龄拿出来
+            int newAge = arr[index].getAge()+1;
+            //把加一之后的年龄塞回去
+            stu1.setAge(newAge);
+            //遍历数组
+            printArr(arr);
+        }else{
+            System.out.println("当前id不存在,修改失败");
+        }
     }
 
     public static Student[] creatnewarr(Student[] arr) {
@@ -110,6 +135,25 @@ public class Test {
                 System.out.println(stu.getId() + "," + stu.getName() + "," + stu.getAge());
             }
         }
+    }
+
+    //1.我要干嘛?找到id在数组中的索引
+    //2.我需要什么?数组id
+    //3.调用处是否需要继续使用方法的结果?  要
+    public static int getIndex(Student[]arr,int id){
+        for (int i = 0; i < arr.length; i++) {
+            //依次得到每一个学生对象
+            Student stu =arr[i];
+            //对sut进行一个非空判断
+            if(stu!=null){
+                int sid=stu.getId();
+                if(sid==id){
+                    return i;
+                }
+            }
+        }
+        //当前循环结束之后,还没有找到就表示不存在
+        return -1;
     }
 }
 
