@@ -8,12 +8,12 @@ public class Test {
         System.out.println(getCode());
     }
 
-    private static String getCode(){
+    public static String getCode() {
         //1.创建一个集合添加所有的大小写字母
         ArrayList<Character> list = new ArrayList<>();
         for (int i = 0; i < 26; i++) {
-            list.add((char)('a' + i));
-            list.add((char)('A' + i));
+            list.add((char) ('a' + i));
+            list.add((char) ('A' + i));
         }
 
         StringBuilder sb = new StringBuilder();
@@ -21,7 +21,7 @@ public class Test {
 
         //2.要随机抽取4个字符
         for (int i = 0; i < 4; i++) {
-            // ★ 修复这里：先随机出一个索引，再去 list 里面取
+            //先随机出一个索引，再去 list 里面取
             int randomCharIndex = r.nextInt(list.size());
             char c = list.get(randomCharIndex);
             //把随机字符添加到sb当中
