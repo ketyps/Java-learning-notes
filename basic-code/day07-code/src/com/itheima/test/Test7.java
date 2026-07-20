@@ -36,7 +36,7 @@ public class Test7 {
         //6. 遍历打印最终生成的正序数组
         System.out.print("转换后的数组为：[");
         for (int i = 0; i < arr.length; i++) {
-            if(i == arr.length - 1) {
+            if (i == arr.length - 1) {
                 System.out.print(arr[i]);
             } else {
                 System.out.print(arr[i] + ", ");

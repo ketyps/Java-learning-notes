@@ -21,10 +21,10 @@ public class Test3 {
             // 随机决定生成大写还是小写
             if (r.nextBoolean()) { // r.nextBoolean() 比 r.nextInt(2) 更语义化
                 // 小写字母
-                code += (char)('a' + r.nextInt(26));
+                code += (char) ('a' + r.nextInt(26));
             } else {
                 // 大写字母
-                code += (char)('A' + r.nextInt(26));
+                code += (char) ('A' + r.nextInt(26));
             }
         }
 
