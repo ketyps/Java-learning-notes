@@ -21,15 +21,15 @@ public class StringDemo7 {
             return "";
         }
 
-        if(arr.length==0){
+        if (arr.length == 0) {
             return "[]";
         }
 
         String result = "";
-        for (int i = 0; i < arr.length-1; i++) {
-            result=result+arr[i]+" , ";
+        for (int i = 0; i < arr.length - 1; i++) {
+            result = result + arr[i] + " , ";
         }
 
-        return "["+result+arr[arr.length-1]+"]";
+        return "[" + result + arr[arr.length - 1] + "]";
     }
 }
