@@ -1,4 +1,4 @@
-# - Java Learning Notes
+# Java Learning Notes
 
 我的 Java 学习笔记与练习代码仓库。从零开始系统学习 Java，涵盖基础语法到面向对象编程，持续更新中。
 
