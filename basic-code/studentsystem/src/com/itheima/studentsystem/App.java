@@ -40,11 +40,11 @@ public class App {
             String password = sc.next();
 
             while (true) {
-                String righhtCode = getCode();
-                System.out.println("当前正确的验证码为:" + righhtCode);
+                String rightCode = getCode();
+                System.out.println("当前正确的验证码为:" + rightCode);
                 System.out.println("请输入验证码");
                 String code = sc.next();
-                if (code.equalsIgnoreCase(righhtCode)) {
+                if (code.equalsIgnoreCase(rightCode)) {
                     System.out.println("验证码正确");
                     break;
                 } else {
@@ -279,7 +279,7 @@ public class App {
         String username = sc.next();
         boolean flag = contains(list, username);
         if (!flag) {
-            System.out.println("当前用户" + username + "未注册,请先注册");
+            System.out.println("当前用户" + username + "未找到,请检查后重试");
             return;
         }
 
