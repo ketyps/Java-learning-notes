@@ -1,6 +1,5 @@
 package com.itheima.studentsystem;
 
-import java.text.BreakIterator;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -14,9 +13,9 @@ public class App {
             System.out.println("请选择操作: 1登录 2注册 3忘记密码 4退出");
             String choose = sc.next();
             switch (choose) {
-                case "1" -> login(list);
-                case "2" -> register(list);
-                case "3" -> forgetPassword(list);
+                case "1" -> login(list, sc);
+                case "2" -> register(list, sc);
+                case "3" -> forgetPassword(list, sc);
                 case "4" -> {
                     System.out.println("谢谢使用,再见");
                     System.exit(0);
@@ -26,8 +25,7 @@ public class App {
         }
     }
 
-    private static void login(ArrayList<User> list) {
-        Scanner sc = new Scanner(System.in);
+    private static void login(ArrayList<User> list, Scanner sc) {
         for (int i = 0; i < 3; i++) {
             System.out.println("请输入用户名");
             String username = sc.next();
@@ -66,7 +64,8 @@ public class App {
             boolean result = checkUserInfo(list, userInfo);
             if (result) {
                 System.out.println("登录成功,可以开始使用学生系统了");
-                break;
+                StudentSystem.start(sc);
+                return;
             } else {
                 System.out.println("登录失败,用户名或密码错误");
                 if (i == 2) {
@@ -91,9 +90,8 @@ public class App {
         return false;
     }
 
-    private static void register(ArrayList<User> list) {
+    private static void register(ArrayList<User> list, Scanner sc) {
         //1. 键盘录入用户名
-        Scanner sc = new Scanner(System.in);
         String username;
         while (true) {
             System.out.println("请输入用户名");
@@ -276,8 +274,7 @@ public class App {
         return count > 0;
     }
 
-    private static void forgetPassword(ArrayList<User> list) {
-        Scanner sc = new Scanner(System.in);
+    private static void forgetPassword(ArrayList<User> list, Scanner sc) {
         System.out.println("请输入用户名");
         String username = sc.next();
         boolean flag = contains(list, username);
