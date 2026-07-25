@@ -10,8 +10,8 @@ public class Student {
     //这个this: 是由虚拟机赋值的。
     public void show1(Student this){
         System.out.println("this:" + this);
-        System.out.println(this.name + ", " + this.age +
-                ", " + teacherName);
+        System.out.println(this.name + "," + this.age +
+                "," + teacherName);
 
         //调用其他方法
         this.show2();
