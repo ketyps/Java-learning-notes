@@ -9,13 +9,21 @@ import java.awt.event.KeyListener;
 import java.util.Date;
 import java.util.Random;
 
+/*
+1.实现切换其它拼图图片的功能
+JMenuItem可以继续嵌套JMenuItem,这样就可以实现多级菜单的效果,
+就在JMenuItem选择其它图片的时候,把path路径修改为其它图片的路径,
+然后重新加载图片即可
+2.实现登录注册页面的功能
+*/ 
+
 public class GameJFrame extends JFrame implements KeyListener, ActionListener {
     //继承两个接口,一个是键盘监听事件,一个是菜单条目点击事件
     //定义一个一维数组,管理数据,加载图片的时候会根据二维数据中的数据进行加载
     int[][] resultArr;
 
     //定义一个变量保存路径
-    String path = "puzzlegame\\image\\animal\\animal3\\";
+    String path = randomImageSelector();
 
     //记录空白方块在二维数组中的编号
     int x = 0;
@@ -29,6 +37,10 @@ public class GameJFrame extends JFrame implements KeyListener, ActionListener {
     JMenuItem reLoginItem = new JMenuItem("重新登录");
     JMenuItem closeItem = new JMenuItem("关闭游戏");
     JMenuItem accountItem = new JMenuItem("公众号");
+    JMenu otherImagesJMenu = new JMenu("更多图片");
+    JMenuItem animalImagesItem = new JMenuItem("动物");
+    JMenuItem sportsImagesItem = new JMenuItem("运动");
+    JMenuItem girlImagesItem = new JMenuItem("美女");
 
     //定义一个二维数组，存储正确的数据
     int[][] win = {
@@ -86,7 +98,6 @@ public class GameJFrame extends JFrame implements KeyListener, ActionListener {
     }
 
     //初始化图片
-    //添加图片的时候就需要按照二维数组中管理的数据添加图片
     private void initImage() {
         //清空原本已经存在的图片
         this.getContentPane().removeAll();
@@ -133,6 +144,7 @@ public class GameJFrame extends JFrame implements KeyListener, ActionListener {
         this.getContentPane().repaint();
     }
 
+    //初始化菜单
     private void initJMenubar() {
         //创建整个菜单对象
         JMenuBar jMenuBar = new JMenuBar();
@@ -145,13 +157,20 @@ public class GameJFrame extends JFrame implements KeyListener, ActionListener {
         functionJMenu.add(replayItem);
         functionJMenu.add(reLoginItem);
         functionJMenu.add(closeItem);
+        functionJMenu.add(otherImagesJMenu);
         aboutJeMenu.add(accountItem);
+        otherImagesJMenu.add(animalImagesItem);
+        otherImagesJMenu.add(sportsImagesItem);
+        otherImagesJMenu.add(girlImagesItem);
 
         //给条目绑定事件监听
         replayItem.addActionListener(this);
         reLoginItem.addActionListener(this);
         closeItem.addActionListener(this);
         accountItem.addActionListener(this);
+        animalImagesItem.addActionListener(this);
+        sportsImagesItem.addActionListener(this);
+        girlImagesItem.addActionListener(this);
 
         //将菜单里面的两个选项添加到菜单当中
         jMenuBar.add(functionJMenu);
@@ -161,6 +180,7 @@ public class GameJFrame extends JFrame implements KeyListener, ActionListener {
         this.setJMenuBar(jMenuBar);
     }
 
+    //初始化界面
     private void initJFrame() {
         //设置界面的宽高
         this.setSize(603, 680);
@@ -178,6 +198,7 @@ public class GameJFrame extends JFrame implements KeyListener, ActionListener {
         this.addKeyListener(this);
     }
 
+    //键盘按下松开都会触发的事件
     @Override
     public void keyTyped(KeyEvent e) {
 
@@ -211,6 +232,7 @@ public class GameJFrame extends JFrame implements KeyListener, ActionListener {
         }
     }
 
+    //松开按键时会调用这个方法
     @Override
     public void keyReleased(KeyEvent e) {
 
@@ -312,6 +334,35 @@ public class GameJFrame extends JFrame implements KeyListener, ActionListener {
         return true;
     }
 
+    //随机图片选择器方法(有传参)
+    public void randomImageSelector(String category) {
+        //根据指定的类别和图片编号，随机选择一张图片
+        Random r = new Random();
+        if (category.equals("girl")) {
+            path = "puzzlegame\\image\\girl\\girl" + (r.nextInt(1,14) ) + "\\";
+        }else if (category.equals("sport")) {
+            path = "puzzlegame\\image\\sport\\sport" + (r.nextInt(1,11) ) + "\\";
+        } else if (category.equals("animal")) {
+            path = "puzzlegame\\image\\animal\\animal" + (r.nextInt(1,9) ) + "\\";
+        }
+    }
+
+    //随机图片选择器方法(无传参)
+    public String randomImageSelector() {
+        //根据指定的类别和图片编号，随机选择一张图片
+        Random r = new Random();
+        int categoryIndex = r.nextInt(3);
+        if (categoryIndex == 0) {
+            path = "puzzlegame\\image\\girl\\girl" + (r.nextInt(1,14) ) + "\\";
+        } else if (categoryIndex == 1) {
+            path = "puzzlegame\\image\\sport\\sport" + (r.nextInt(1,11) ) + "\\";
+        } else {
+            path = "puzzlegame\\image\\animal\\animal" + (r.nextInt(1,9) ) + "\\";
+        }
+        return path;
+    }
+
+    //菜单条目点击事件
     @Override
     public void actionPerformed(ActionEvent e) {
         String obj = e.getActionCommand();
@@ -347,6 +398,18 @@ public class GameJFrame extends JFrame implements KeyListener, ActionListener {
             jDialog.setModal(true);
             //显示弹框
             jDialog.setVisible(true);
-        }   
+        }else if ("动物".equals(obj)) {
+            randomImageSelector("animal");
+            initData();
+            initImage();
+        } else if ("运动".equals(obj)) {
+            randomImageSelector("sport");
+            initData();
+            initImage();
+        } else if ("美女".equals(obj)) {
+            randomImageSelector("girl");
+            initData();
+            initImage();
+        }
     }
 }
