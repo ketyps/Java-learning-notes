@@ -10,8 +10,8 @@ import java.util.Date;
 import java.util.Random;
 
 public class GameJFrame extends JFrame implements KeyListener, ActionListener {
-    //定义一个一维数组
-    //管理数据,加载图片的时候会根据二维数据中的数据进行加载
+    //继承两个接口,一个是键盘监听事件,一个是菜单条目点击事件
+    //定义一个一维数组,管理数据,加载图片的时候会根据二维数据中的数据进行加载
     int[][] resultArr;
 
     //定义一个变量保存路径
@@ -38,6 +38,9 @@ public class GameJFrame extends JFrame implements KeyListener, ActionListener {
             {13, 14, 15, 0}
     };
 
+    //以上对象都是成员变量，成员变量的作用域是整个类中都可以使用
+
+    //GameJFrame的无参构造方法,App创建游戏界面对象的时候,就会调用这个方法
     public GameJFrame() {
         //初始化界面
         initJFrame();
@@ -89,19 +92,25 @@ public class GameJFrame extends JFrame implements KeyListener, ActionListener {
         this.getContentPane().removeAll();
 
         //显示当前的步数
-        JLabel stepCount = new JLabel("步数" + step);
+        JLabel stepCount = new JLabel("步数:" + step);
         stepCount.setBounds(50, 30, 100, 20);
         this.getContentPane().add(stepCount);
 
+        //如果游戏胜利，把胜利图标放在最前面添加，这样它才会显示在所有图片的最上层
+        if (victory()) {
+            JLabel winJLabel = new JLabel(new ImageIcon("puzzlegame\\image\\win.png"));
+            winJLabel.setBounds(203, 283, 197, 73);
+            this.getContentPane().add(winJLabel);
+        }
 
         //创建内外循环添加16张图片
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
                 int num = resultArr[i][j];
                 //创建一个图片ImageIcon的对象
-                ImageIcon icon1 = new ImageIcon(path + num + ".jpg");
+                ImageIcon icon = new ImageIcon(path + num + ".jpg");
                 //创建一个JLabel的对象(管理容器)
-                JLabel jLabel = new JLabel(icon1);
+                JLabel jLabel = new JLabel(icon);
                 //指定图片位置
                 jLabel.setBounds(105 * j + 83, 105 * i + 134, 105, 105);
                 //给图片添加边框
@@ -119,13 +128,6 @@ public class GameJFrame extends JFrame implements KeyListener, ActionListener {
         background.setBounds(40, 40, 508, 560);
         //把背景图片添加到界面当中
         this.getContentPane().add(background);
-
-        //如果游戏胜利，把胜利图标放在最后添加，这样它才会显示在所有图片的最上层
-        if (victory()) {
-            JLabel winJLabel = new JLabel(new ImageIcon("puzzlegame\\image\\win.png"));
-            winJLabel.setBounds(203, 283, 197, 73);
-            this.getContentPane().add(winJLabel);
-        }
 
         //刷新界面
         this.getContentPane().repaint();
@@ -184,16 +186,22 @@ public class GameJFrame extends JFrame implements KeyListener, ActionListener {
     //按下不松时会调用这个方法
     @Override
     public void keyPressed(KeyEvent e) {
+
+        //判断游戏是否胜利，如果胜利，此方法需要直接结束，不能再执行下面的移动代码了
+        if (victory()) {
+            //结束方法
+            return;
+        }
+
         int code = e.getKeyCode();
-        if (code == 65) {
+        if (code == KeyEvent.VK_A) {
             //把界面中所有的图片全部删除
             this.getContentPane().removeAll();
             //加载第一张完整的图片
             JLabel all = new JLabel(new ImageIcon(path + "all.jpg"));
             all.setBounds(83, 134, 420, 420);
             this.getContentPane().add(all);
-            //加载背景图片
-            //添加背景图片
+            //创建和加载背景图片
             JLabel background = new JLabel(new ImageIcon("puzzlegame\\image\\background.png"));
             background.setBounds(40, 40, 508, 560);
             //把背景图片添加到界面当中
@@ -213,9 +221,8 @@ public class GameJFrame extends JFrame implements KeyListener, ActionListener {
         }
 
         //对上下左右判断
-        //左37,上38,右39,下40
         int code = e.getKeyCode();
-        if (code == 37) {
+        if (code == KeyEvent.VK_LEFT) {
             System.out.println("向左移动");
             //逻辑：
             //把空白方块右方的数字往左移动
@@ -228,7 +235,7 @@ public class GameJFrame extends JFrame implements KeyListener, ActionListener {
                 this.step++;
                 initImage();
             }
-        } else if (code == 38) {
+        } else if (code == KeyEvent.VK_UP) {
             System.out.println("向上移动");
             //逻辑：
             //把空白方块下方的数字往上移动
@@ -244,7 +251,7 @@ public class GameJFrame extends JFrame implements KeyListener, ActionListener {
                 this.step++;
                 initImage();
             }
-        } else if (code == 39) {
+        } else if (code == KeyEvent.VK_RIGHT) {
             System.out.println("向右移动");
             //逻辑：
             //把空白方块左方的数字往右移动
@@ -257,7 +264,7 @@ public class GameJFrame extends JFrame implements KeyListener, ActionListener {
                 this.step++;
                 initImage();
             }
-        } else if (code == 40) {
+        } else if (code == KeyEvent.VK_DOWN) {
             System.out.println("向下移动");
             //逻辑：
             //把空白方块上方的数字往下移动
@@ -270,10 +277,11 @@ public class GameJFrame extends JFrame implements KeyListener, ActionListener {
                 this.step++;
                 initImage();
             }
-        } else if (code == 65) {
+        } else if (code == KeyEvent.VK_A) {
             //松开A键时,重载游戏时的界面
             this.initImage();
-        } else if (code == 87) {
+        } else if (code == KeyEvent.VK_W) {
+            //按下W键时,直接胜利
             resultArr = new int[][]{
                     {1, 2, 3, 4},
                     {5, 6, 7, 8},
@@ -287,12 +295,12 @@ public class GameJFrame extends JFrame implements KeyListener, ActionListener {
         }
     }
 
-    //判断data数组中的数据是否跟win数组中相同
+    //判断resultArr数组中的数据是否跟win数组中相同
     //如果全部相同，返回true。否则返回false
     public boolean victory() {
         for (int i = 0; i < resultArr.length; i++) {
-            //i : 依次表示二维数组 data里面的索引
-            //data[i]: 依次表示每一个一维数组
+            //i : 依次表示二维数组 resultArr里面的索引
+            //resultArr[i]: 依次表示每一个一维数组
             for (int j = 0; j < resultArr[i].length; j++) {
                 if (resultArr[i][j] != win[i][j]) {
                     //只要有一个数据不一样，则返回false
@@ -318,7 +326,7 @@ public class GameJFrame extends JFrame implements KeyListener, ActionListener {
             //关闭当前界面
             this.setVisible(false);
             //打开登录界面
-            new com.itheima.ui.LoginJFrame();
+            new LoginJFrame();
         } else if ("关闭游戏".equals(obj)) {
             System.exit(0);
         } else if ("公众号".equals(obj)) {
@@ -330,7 +338,7 @@ public class GameJFrame extends JFrame implements KeyListener, ActionListener {
             //把管理图片的容器添加到弹框当中
             jDialog.getContentPane().add(jLabel);
             //设置弹框的宽高
-            jDialog.setSize(344, 344);
+            jDialog.setSize(500, 500);
             //让弹框置顶
             jDialog.setAlwaysOnTop(true);
             //让弹框居中
