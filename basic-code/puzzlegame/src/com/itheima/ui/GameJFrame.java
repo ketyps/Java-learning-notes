@@ -11,8 +11,8 @@ import java.util.Random;
 
 /*
 1.实现切换其它拼图图片的功能
-JMenuItem可以继续嵌套JMenuItem,这样就可以实现多级菜单的效果,
-就在JMenuItem选择其它图片的时候,把path路径修改为其它图片的路径,
+JMenu可以继续嵌套JMenu,这样就可以实现多级菜单的效果,
+就在JMenu选择其它图片的时候,把path路径修改为其它图片的路径,
 然后重新加载图片即可
 2.实现登录注册页面的功能
 */ 
@@ -109,7 +109,7 @@ public class GameJFrame extends JFrame implements KeyListener, ActionListener {
 
         //如果游戏胜利，把胜利图标放在最前面添加，这样它才会显示在所有图片的最上层
         if (victory()) {
-            JLabel winJLabel = new JLabel(new ImageIcon("puzzlegame\\image\\win.png"));
+            JLabel winJLabel = new JLabel(new ImageIcon("image\\win.png"));
             winJLabel.setBounds(203, 283, 197, 73);
             this.getContentPane().add(winJLabel);
         }
@@ -134,7 +134,7 @@ public class GameJFrame extends JFrame implements KeyListener, ActionListener {
         }
 
         //添加背景图片
-        JLabel background = new JLabel(new ImageIcon("puzzlegame\\image\\background.png"));
+        JLabel background = new JLabel(new ImageIcon("image\\background.png"));
         //调整背景图片所在容器的参数
         background.setBounds(40, 40, 508, 560);
         //把背景图片添加到界面当中
@@ -223,7 +223,7 @@ public class GameJFrame extends JFrame implements KeyListener, ActionListener {
             all.setBounds(83, 134, 420, 420);
             this.getContentPane().add(all);
             //创建和加载背景图片
-            JLabel background = new JLabel(new ImageIcon("puzzlegame\\image\\background.png"));
+            JLabel background = new JLabel(new ImageIcon("image\\background.png"));
             background.setBounds(40, 40, 508, 560);
             //把背景图片添加到界面当中
             this.getContentPane().add(background);
@@ -339,11 +339,11 @@ public class GameJFrame extends JFrame implements KeyListener, ActionListener {
         //根据指定的类别和图片编号，随机选择一张图片
         Random r = new Random();
         if (category.equals("girl")) {
-            path = "puzzlegame\\image\\girl\\girl" + (r.nextInt(1,14) ) + "\\";
+            path = "image\\girl\\girl" + (r.nextInt(1,14) ) + "\\";
         }else if (category.equals("sport")) {
-            path = "puzzlegame\\image\\sport\\sport" + (r.nextInt(1,11) ) + "\\";
+            path = "image\\sport\\sport" + (r.nextInt(1,11) ) + "\\";
         } else if (category.equals("animal")) {
-            path = "puzzlegame\\image\\animal\\animal" + (r.nextInt(1,9) ) + "\\";
+            path = "image\\animal\\animal" + (r.nextInt(1,9) ) + "\\";
         }
     }
 
@@ -353,11 +353,11 @@ public class GameJFrame extends JFrame implements KeyListener, ActionListener {
         Random r = new Random();
         int categoryIndex = r.nextInt(3);
         if (categoryIndex == 0) {
-            path = "puzzlegame\\image\\girl\\girl" + (r.nextInt(1,14) ) + "\\";
+            path = "image\\girl\\girl" + (r.nextInt(1,14) ) + "\\";
         } else if (categoryIndex == 1) {
-            path = "puzzlegame\\image\\sport\\sport" + (r.nextInt(1,11) ) + "\\";
+            path = "image\\sport\\sport" + (r.nextInt(1,11) ) + "\\";
         } else {
-            path = "puzzlegame\\image\\animal\\animal" + (r.nextInt(1,9) ) + "\\";
+            path = "image\\animal\\animal" + (r.nextInt(1,9) ) + "\\";
         }
         return path;
     }
@@ -384,7 +384,7 @@ public class GameJFrame extends JFrame implements KeyListener, ActionListener {
             //创建一个弹框对象
             JDialog jDialog = new JDialog();
             //创建一个管理图片的容器对象JLabel
-            JLabel jLabel = new JLabel(new ImageIcon("E:\\Code\\Java-learning-notes\\basic-code\\puzzlegame\\image\\about\\about1.png"));
+            JLabel jLabel = new JLabel(new ImageIcon("image\\about\\about1.png"));
             jLabel.setBounds(0, 0, 258, 258);
             //把管理图片的容器添加到弹框当中
             jDialog.getContentPane().add(jLabel);
