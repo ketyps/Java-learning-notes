@@ -26,9 +26,6 @@ public class RegexDemo1 {
         //下面的就是满足要求的数据了。
         int len = qq.length();
         if (len < 6 || len > 20) {
-
-
-
             return false;
         }
         //0不能在开头
